@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('images/conus.jpg') no-repeat center center; /* Set the background image */
+            background-size: cover; /* Ensure the image covers the viewport */
+            color: #333;
+        }
+        .container {
+            max-width: 600px;
+            margin: 40px auto;
+            background: rgba(255, 255, 255, 0.8); /* Semi-transparent white background for the form */
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border: 1px solid #1465e0;
+            text-align: center;
+        }
+
+        .container:hover {
+            background: radial-gradient(circle, #8cff5f, #7bbffe);
+            /* box-shadow: 0 8px 16px rgba(236, 3, 3, 0.823); */
+            box-shadow: 0 0 15px rgba(0, 123, 255, 0.7);
+            transform: scale(1.05);
+            border: 1px solid #007BFF;
+            font-size:medium;
+            /* transform: rotate(2deg); */
+            /* transform: translateY(-5px); */
+            animation: pulse 1s infinite;
+        }
+        h1 {
+            color: #ff0000;
+            font-size: 2em;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: 600;
+            color: #444;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            margin-top: 5px;
+            border: 1px solid #dcdcdc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+            background-color: #f2eafa; /* Ensure input fields are readable on the image */
+        }
+        textarea {
+            height: 150px;
+            resize: vertical;
+        }
+        button {
+            display: block;
+            /* width: 100px;
+            height: 40px; */
+            padding: 12px 24px;
+            text-align: center;
+            margin-top: 20px;
+            background-color: #ff0000;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+        }
+
+        .submit-button-wrapper {
+            text-align: center; /* Centers the button horizontally */
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .error {
+            color: #e74c3c;
+            margin-top: 5px;
+            font-size: 14px;
+        }
+        .success {
+            color: #2ecc71;
+            margin-top: 5px;
+            font-size: 14px;
+        }
+        .form-group:last-child {
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Contact Us</h1>
+        <form id="contact-form" onsubmit="handleSubmit(event)">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" placeholder="ENTER YOUR NAME...." name="name" required>
+                <span class="error" id="name-error"></span>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" placeholder="ENTER YOUR EMAIL...." name="email" required>
+                <span class="error" id="email-error"></span>
+            </div>
+            <div class="form-group">
+                <label for="message">Message:</label>
+                <textarea id="message" placeholder="TYPE YOUR FEEDBACK MESSAGE..." name="message" required></textarea>
+                <span class="error" id="message-error"></span>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <script>
+        function handleSubmit(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+
+            const phoneNumber = 'xxxxxxxxxx'; // Replace with your WhatsApp number (include country code, no +)
+            const encodedMessage = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nMessage: ${message}`);
+            const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+
+            // Open WhatsApp chat
+            window.open(whatsappURL, '_blank');
+
+            // Optional: Reset the form
+            document.getElementById('contact-form').reset();
+
+            // Optional: Show success message
+            alert('Your message has been sent successfully!');
+        }
+    </script>
+</body>
+</html>
